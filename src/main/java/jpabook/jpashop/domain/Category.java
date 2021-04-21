@@ -1,10 +1,11 @@
 package jpabook.jpashop.domain;
 
+import static javax.persistence.FetchType.LAZY;
+
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -35,7 +36,7 @@ public class Category {
   private List<Item> items = new ArrayList<>();
 
   // 카테고리는 계층 구조이므로 부모와 자식을 만들어준다.
-  @ManyToOne
+  @ManyToOne(fetch = LAZY)
   @JoinColumn(name = "parent_id")
   private Category parent;
 
@@ -43,4 +44,10 @@ public class Category {
   // 셀프로 양방향 연관 관계를 맺는 방식이다.
   @OneToMany(mappedBy = "parent")
   private List<Category> child = new ArrayList<>();
+
+  // 연관 관계 편의 메서드
+  public void addChildCategory(Category child) {
+    this.child.add(child);
+    child.setParent(this);
+  }
 }
