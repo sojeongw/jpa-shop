@@ -5,6 +5,7 @@ import javax.persistence.EntityManager;
 import jpabook.jpashop.domain.item.Item;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 @RequiredArgsConstructor
@@ -29,4 +30,10 @@ public class ItemRepository {
     return em.createQuery("select i from Item i", Item.class)
         .getResultList();
   }
+
+  @Transactional
+  public void update(Item item) {
+    Item mergedItem = em.merge(item);
+  }
+
 }
