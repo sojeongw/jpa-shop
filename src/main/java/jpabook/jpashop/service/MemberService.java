@@ -42,4 +42,16 @@ public class MemberService {
   public Member findOne(Long memberId) {
     return memberRepository.findOne(memberId);
   }
+
+  @Transactional
+  public void update(Long id, String name) {
+    Member member = memberRepository.findOne(id);
+
+    // 변경 감지를 사용한다.
+    member.setName(name);
+
+    // 조회한 member를 반환해도 되지만 커맨드와 쿼리를 분리하기 위해 하지 않았다.
+    // 커맨드는 update를 하기위한 변경성 메서드다.
+    // 하지만 member를 리턴하면 조회하는 꼴이 된다. 쿼리와 커맨드가 같이 있게 되는 것이다.
+  }
 }
