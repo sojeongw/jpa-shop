@@ -9,6 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotEmpty;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -30,6 +32,7 @@ public class Member {
   @Embedded
   private Address address;
 
+  @JsonIgnore
   // order 테이블에 있는 member 필드에 의해 매핑된다는 것을 알려준다.
   // 읽기 전용이기 때문에 값을 수정해도 변경되지 않는다.
   @OneToMany(mappedBy = "member")
