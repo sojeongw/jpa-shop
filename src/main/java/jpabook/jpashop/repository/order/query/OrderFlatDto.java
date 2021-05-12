@@ -3,7 +3,6 @@ package jpabook.jpashop.repository.order.query;
 import jpabook.jpashop.domain.Address;
 import jpabook.jpashop.domain.OrderStatus;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 
 import java.time.LocalDateTime;
 
