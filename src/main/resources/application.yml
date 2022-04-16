@@ -1,7 +1,4 @@
 spring:
-  thymeleaf:
-    prefix: classpath:/templates/
-    suffix: .html
   datasource:
     url: jdbc:h2:~/jpashop
     username: sa
@@ -12,10 +9,8 @@ spring:
       ddl-auto: create
     properties:
       hibernate:
-        default_batch_fetch_size: 1000
-        #      show_sql: true   # System.out에 하이버네이트 실행 SQL을 남긴다.
         format_sql: true
-    open-in-view: false  # OSIV
 logging.level:
-    org.hibernate.SQL: debug  # logger를 통해 하이버네이트 실행 SQL을 남긴다.
-#    org.hibernate.type: trace
+  org.hibernate.SQL: debug
+  # 파라미터를 로기로 남기는 옵션을 추가한다.
+  org.hibernate.type: trace
