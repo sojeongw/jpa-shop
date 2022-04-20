@@ -23,6 +23,13 @@ public class MemberService {
         return member.getId();
     }
 
+    @Transactional
+    public void update(Long id, String name) {
+        Member member = memberRepository.findOne(id);
+        // 변경 감지를 사용한다.
+        member.setName(name);
+    }
+
     private void validateDuplicateMember(Member member) {
         // WAS가 동시에 여러 개 떠서 동시에 validate를 시도하면 문제가 생긴다.
         // 실무에서는 이런 멀티 스레드 문제를 해결해줘야 한다.
