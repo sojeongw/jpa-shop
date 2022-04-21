@@ -26,4 +26,18 @@ public class OrderItem {
     private int orderPrice;
 
     private int count;
+
+    public static OrderItem createOrderItem(Item item, int orderPrice, int count) {
+        // 쿠폰 등의 가격 변경 가능성 때문에 객체를 따로 만든다.
+        OrderItem orderItem = new OrderItem();
+
+        orderItem.setItem(item);
+        orderItem.setOrderPrice(orderPrice);
+        orderItem.setCount(count);
+
+        // 넘어온 것만큼 재고를 뺀다.
+        item.removeStock(count);
+
+        return orderItem;
+    }
 }
