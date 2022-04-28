@@ -10,6 +10,7 @@ spring:
     properties:
       hibernate:
         format_sql: true
+        default_batch_fetch_size: 1000
 logging.level:
   org.hibernate.SQL: debug
   # 파라미터를 로기로 남기는 옵션을 추가한다.
